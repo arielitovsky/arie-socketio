@@ -27,8 +27,9 @@ type systemHandler func(c *Channel)
 *
 * Handler function that should return data to be sent on a CONNECT message
 * For example, can be used for supplying authorization information
+* The returning struct should have an `sid` property with the value supplied
  */
-type ConnectDataHandler func() any
+type ConnectDataHandler func(sid string) any
 
 /*
 *

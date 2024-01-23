@@ -181,7 +181,7 @@ func inLoop(c *Channel, m *methods) error {
 				// in protocol v4 & binary msg Connection to a namespace
 
 				if c.conn.GetUseBinaryMessage() {
-					// TODO: this still doesn't seem to work properly
+					// TODO: the "data" part of this doesn't seem to work properly
 					data := getConnectData(m)
 					c.out <- &protocol.MsgPack{
 						Type: protocol.CONNECT,

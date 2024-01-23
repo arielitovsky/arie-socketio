@@ -147,7 +147,7 @@ func closeChannel(c *Channel, m *methods, args ...interface{}) error {
 
 func getConnectData(m *methods) string {
 	if m.connectMessageDataHandler != nil {
-		return "," + m.connectMessageDataHandler()
+		return m.connectMessageDataHandler()
 	}
 	return ""
 }

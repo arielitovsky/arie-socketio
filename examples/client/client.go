@@ -2,11 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/Baiguoshuai1/shadiaosocketio"
-	"github.com/Baiguoshuai1/shadiaosocketio/websocket"
-	"github.com/buger/jsonparser"
 	"log"
 	"time"
+
+	"github.com/Baiguoshuai1/ariesocketio"
+	"github.com/Baiguoshuai1/ariesocketio/websocket"
+	"github.com/buger/jsonparser"
 )
 
 type Message struct {
@@ -18,7 +19,7 @@ type Desc struct {
 	Text string `json:"text"`
 }
 
-func sendAck(c *shadiaosocketio.Client) {
+func sendAck(c *ariesocketio.Client) {
 	// return [][]byte
 	result, err := c.Ack("/ackFromClient", time.Second*5, Message{Id: 3, Channel: "client channel"}, 4)
 	if err != nil {
@@ -61,31 +62,31 @@ func sendAck(c *shadiaosocketio.Client) {
 	}
 }
 
-func sendMessage(c *shadiaosocketio.Client, args ...interface{}) {
+func sendMessage(c *ariesocketio.Client, args ...interface{}) {
 	err := c.Emit("message", args...)
 	if err != nil {
 		panic(err)
 	}
 }
 
-func createClient() *shadiaosocketio.Client {
-	c, err := shadiaosocketio.Dial(
-		shadiaosocketio.GetUrl("localhost", 2233, false),
+func createClient() *ariesocketio.Client {
+	c, err := ariesocketio.Dial(
+		ariesocketio.GetUrl("localhost", 2233, false),
 		*websocket.GetDefaultWebsocketTransport())
 	if err != nil {
 		panic(err)
 	}
 
-	_ = c.On(shadiaosocketio.OnConnection, func(h *shadiaosocketio.Channel) {
+	_ = c.On(ariesocketio.OnConnection, func(h *ariesocketio.Channel) {
 		log.Println("[client] connected! id:", h.Id())
 		log.Println("[client]", h.LocalAddr().Network()+" "+h.LocalAddr().String()+
 			" --> "+h.RemoteAddr().Network()+" "+h.RemoteAddr().String())
 	})
-	_ = c.On(shadiaosocketio.OnDisconnection, func(h *shadiaosocketio.Channel, reason websocket.CloseError) {
+	_ = c.On(ariesocketio.OnDisconnection, func(h *ariesocketio.Channel, reason websocket.CloseError) {
 		log.Println("[client] disconnected, code:", reason.Code, "text:", reason.Text)
 	})
 
-	_ = c.On("message", func(h *shadiaosocketio.Channel, args Message) {
+	_ = c.On("message", func(h *ariesocketio.Channel, args Message) {
 		str, err := jsonparser.GetString([]byte(args.Channel), "chinese")
 		if err != nil {
 			log.Println("[client] parse json err:", err)
@@ -93,11 +94,11 @@ func createClient() *shadiaosocketio.Client {
 		}
 		log.Println("[client] got chat message:", str)
 	})
-	_ = c.On("/admin", func(h *shadiaosocketio.Channel, args Message) {
+	_ = c.On("/admin", func(h *ariesocketio.Channel, args Message) {
 		log.Println("[client] got admin message:", args)
 	})
 	// sending ack response
-	_ = c.On("/ackFromServer", func(h *shadiaosocketio.Channel, arg1 string, arg2 int) (Message, int) {
+	_ = c.On("/ackFromServer", func(h *ariesocketio.Channel, arg1 string, arg2 int) (Message, int) {
 		log.Println("[client] got ack from server:", arg1, arg2)
 		time.Sleep(2 * time.Second)
 		return Message{

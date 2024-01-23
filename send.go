@@ -1,10 +1,11 @@
-package shadiaosocketio
+package ariesocketio
 
 import (
 	"errors"
-	"github.com/Baiguoshuai1/shadiaosocketio/protocol"
 	"log"
 	"time"
+
+	"github.com/Baiguoshuai1/ariesocketio/protocol"
 )
 
 var (

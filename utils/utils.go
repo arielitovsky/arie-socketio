@@ -1,9 +1,10 @@
 package utils
 
 import (
-	jsoniter "github.com/json-iterator/go"
 	"log"
 	"os"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 var Json = func() jsoniter.API {
@@ -16,7 +17,7 @@ func Debug(l ...interface{}) {
 	if os.Getenv("DEBUG") == "1" {
 		log.SetFlags(log.LstdFlags | log.Lmicroseconds)
 
-		prefix := "[shadiaosocketio]"
+		prefix := "[ariesocketio]"
 
 		log.Println(append([]interface{}{prefix}, l...)...)
 	}

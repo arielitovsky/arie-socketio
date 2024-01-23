@@ -1,10 +1,11 @@
-package shadiaosocketio
+package ariesocketio
 
 import (
-	"github.com/Baiguoshuai1/shadiaosocketio/protocol"
-	"github.com/Baiguoshuai1/shadiaosocketio/websocket"
 	"net"
 	"strconv"
+
+	"github.com/Baiguoshuai1/ariesocketio/protocol"
+	"github.com/Baiguoshuai1/ariesocketio/websocket"
 )
 
 const (

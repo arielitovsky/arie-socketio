@@ -4,16 +4,17 @@ import (
 	"bytes"
 	"crypto/tls"
 	"errors"
-	"github.com/Baiguoshuai1/shadiaosocketio/protocol"
-	"github.com/Baiguoshuai1/shadiaosocketio/utils"
-	"github.com/gorilla/websocket"
-	"github.com/ugorji/go/codec"
 	"io"
 	"net"
 	"net/http"
 	"reflect"
 	"strconv"
 	"time"
+
+	"github.com/Baiguoshuai1/ariesocketio/protocol"
+	"github.com/Baiguoshuai1/ariesocketio/utils"
+	"github.com/gorilla/websocket"
+	"github.com/ugorji/go/codec"
 )
 
 const (
@@ -268,8 +269,8 @@ type Transport struct {
 	BufferSize    int
 	BinaryMessage bool
 
-	UnsecureTLS   bool
-	TLSConfig     *tls.Config
+	UnsecureTLS bool
+	TLSConfig   *tls.Config
 
 	RequestHeader http.Header
 }

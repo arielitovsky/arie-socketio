@@ -1,4 +1,4 @@
-package shadiaosocketio
+package ariesocketio
 
 import (
 	"bytes"
@@ -6,13 +6,14 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"github.com/Baiguoshuai1/shadiaosocketio/protocol"
-	"github.com/Baiguoshuai1/shadiaosocketio/utils"
-	"github.com/Baiguoshuai1/shadiaosocketio/websocket"
 	"math/rand"
 	"net/http"
 	"sync"
 	"time"
+
+	"github.com/Baiguoshuai1/ariesocketio/protocol"
+	"github.com/Baiguoshuai1/ariesocketio/utils"
+	"github.com/Baiguoshuai1/ariesocketio/websocket"
 )
 
 const (

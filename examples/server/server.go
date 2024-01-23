@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/Baiguoshuai1/shadiaosocketio"
-	"github.com/Baiguoshuai1/shadiaosocketio/websocket"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/Baiguoshuai1/ariesocketio"
+	"github.com/Baiguoshuai1/ariesocketio/websocket"
 )
 
 type Message struct {
@@ -18,9 +19,9 @@ type Desc struct {
 }
 
 func main() {
-	server := shadiaosocketio.NewServer(*websocket.GetDefaultWebsocketTransport())
+	server := ariesocketio.NewServer(*websocket.GetDefaultWebsocketTransport())
 
-	server.On(shadiaosocketio.OnConnection, func(c *shadiaosocketio.Channel) {
+	server.On(ariesocketio.OnConnection, func(c *ariesocketio.Channel) {
 		log.Println("[server] connected! id:", c.Id())
 		log.Println("[server]", c.RemoteAddr().Network()+" "+c.RemoteAddr().String()+
 			" --> "+c.LocalAddr().Network()+" "+c.LocalAddr().String())
@@ -44,16 +45,16 @@ func main() {
 		log.Println("ReadBytes", c.ReadBytes())
 		log.Println("WriteBytes", c.WriteBytes())
 	})
-	server.On(shadiaosocketio.OnDisconnection, func(c *shadiaosocketio.Channel, reason websocket.CloseError) {
+	server.On(ariesocketio.OnDisconnection, func(c *ariesocketio.Channel, reason websocket.CloseError) {
 		log.Println("[server] received disconnect", c.Id(), "code:", reason.Code, "text:", reason.Text)
 	})
 
-	server.On("message", func(c *shadiaosocketio.Channel, arg1 string, arg2 Message, arg3 int, arg4 bool) {
+	server.On("message", func(c *ariesocketio.Channel, arg1 string, arg2 Message, arg3 int, arg4 bool) {
 		log.Println("[server] received message:", "arg1:", arg1, "arg2:", arg2, "arg3:", arg3, "arg4:", arg4)
 	})
 
 	// listen ack event
-	server.On("/ackFromClient", func(c *shadiaosocketio.Channel, msg Message, num int) (int, Desc, string) {
+	server.On("/ackFromClient", func(c *ariesocketio.Channel, msg Message, num int) (int, Desc, string) {
 		log.Println("[server] received ack:", msg, num)
 		return 1, Desc{Text: "resp"}, "server"
 	})

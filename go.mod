@@ -1,4 +1,4 @@
-module github.com/Baiguoshuai1/shadiaosocketio
+module github.com/Baiguoshuai1/ariesocketio
 
 go 1.20
 

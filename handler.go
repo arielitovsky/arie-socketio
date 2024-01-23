@@ -1,12 +1,12 @@
-package shadiaosocketio
+package ariesocketio
 
 import (
 	"reflect"
 	"strconv"
 	"sync"
 
-	"github.com/Baiguoshuai1/shadiaosocketio/protocol"
-	"github.com/Baiguoshuai1/shadiaosocketio/utils"
+	"github.com/Baiguoshuai1/ariesocketio/protocol"
+	"github.com/Baiguoshuai1/ariesocketio/utils"
 	"github.com/buger/jsonparser"
 )
 

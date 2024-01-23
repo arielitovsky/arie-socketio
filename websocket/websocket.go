@@ -51,6 +51,7 @@ var (
 // create and configure Handle
 var (
 	mh codec.MsgpackHandle
+	js codec.JsonHandle
 )
 
 type CloseError struct {
@@ -229,7 +230,7 @@ func (wsc *Connection) encodeMessage(msg *protocol.MsgPack, messageType int) ([]
 	}
 
 	buf := bytes.Buffer{}
-	enc := codec.NewEncoder(&buf, &mh)
+	enc := codec.NewEncoder(&buf, &js)
 	err := enc.Encode(msg)
 	if err != nil {
 		return nil, err

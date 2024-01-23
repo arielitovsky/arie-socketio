@@ -185,7 +185,7 @@ func inLoop(c *Channel, m *methods) error {
 					c.out <- &protocol.MsgPack{
 						Type: protocol.CONNECT,
 						Nsp:  protocol.DefaultNsp,
-						Data: &data,
+						Data: data,
 					}
 					// in protocol v4 & text msg Connection to a namespace
 				} else {

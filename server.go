@@ -332,15 +332,6 @@ func deleteSid(c *Channel) {
 	delete(c.server.sids, c.Id())
 }
 
-func getConnectData(c *Channel, m *methods) any {
-	if m.connectMessageDataHandler != nil {
-		return m.connectMessageDataHandler(c.Id())
-	}
-	return struct {
-		Sid string `json:"sid"`
-	}{Sid: c.Id()}
-}
-
 func (s *Server) SendOpenSequence(c *Channel) {
 	jsonHdr, err := utils.Json.Marshal(&c.header)
 	if err != nil {
@@ -358,7 +349,9 @@ func (s *Server) SendOpenSequence(c *Channel) {
 		c.out <- &protocol.MsgPack{
 			Type: protocol.CONNECT,
 			Nsp:  protocol.DefaultNsp,
-			Data: getConnectData(c, &s.methods),
+			Data: struct {
+				Sid string `json:"sid"`
+			}{Sid: c.Id()},
 		}
 	} else {
 		// GET /socket.io/?EIO=4&transport=polling&t=N8hyd7H&sid=lv_VI97HAXpY6yYWAAAC
@@ -366,8 +359,11 @@ func (s *Server) SendOpenSequence(c *Channel) {
 		// < Content-Type: text/plain; charset=UTF-8
 		// 40
 		// in protocol v4 & text msg ps: 0{"sid":"DJehCG0000:1:07d8SFHH:shadiao:101"}
-		data := getConnectData(c, &s.methods)
-		marshal, err := utils.Json.Marshal(&data)
+		marshal, err := utils.Json.Marshal(&struct {
+			Sid string `json:"sid"`
+		}{
+			Sid: c.Id(),
+		})
 		if err != nil {
 			panic(err)
 		}

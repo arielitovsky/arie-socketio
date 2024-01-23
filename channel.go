@@ -145,6 +145,13 @@ func closeChannel(c *Channel, m *methods, args ...interface{}) error {
 	return nil
 }
 
+func getConnectData(m *methods) any {
+	if m.connectMessageDataHandler != nil {
+		return m.connectMessageDataHandler()
+	}
+	return struct{}{}
+}
+
 // incoming messages loop, puts incoming messages to In channel
 func inLoop(c *Channel, m *methods) error {
 	for {
@@ -174,10 +181,11 @@ func inLoop(c *Channel, m *methods) error {
 				// in protocol v4 & binary msg Connection to a namespace
 
 				if c.conn.GetUseBinaryMessage() {
+					data := getConnectData(m)
 					c.out <- &protocol.MsgPack{
 						Type: protocol.CONNECT,
 						Nsp:  protocol.DefaultNsp,
-						Data: &struct{}{},
+						Data: &data,
 					}
 					// in protocol v4 & text msg Connection to a namespace
 				} else {

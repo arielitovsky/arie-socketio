@@ -149,7 +149,7 @@ func getConnectData(m *methods) any {
 	if m.connectMessageDataHandler != nil {
 		return m.connectMessageDataHandler()
 	}
-	return struct{}
+	return struct{}{}
 }
 
 // incoming messages loop, puts incoming messages to In channel

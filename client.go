@@ -14,6 +14,18 @@ const (
 	socketIOUrl             = "/socket.io/?transport=websocket"
 )
 
+type Option func(c *Client)
+
+/*
+*  Set the data handler that should be used when using a CONNECT command
+* the handler should return a data struct that will be used
+ */
+func WithConnectData(handler ConnectDataHandler) Option {
+	return func(c *Client) {
+		c.methods.SetConnectDataHandler(handler)
+	}
+}
+
 type Client struct {
 	methods
 	Channel
@@ -31,9 +43,14 @@ func GetUrl(host string, port int, secure bool) string {
 	return prefix + net.JoinHostPort(host, strconv.Itoa(port)) + socketIOUrl
 }
 
-func Dial(url string, tr websocket.Transport) (*Client, error) {
+func Dial(url string, tr websocket.Transport, options ...Option) (*Client, error) {
+
 	c := &Client{}
 	c.initChannel()
+
+	for _, opt := range options {
+		opt(c)
+	}
 
 	var err error
 

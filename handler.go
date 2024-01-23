@@ -28,7 +28,7 @@ type systemHandler func(c *Channel)
 * Handler function that should return data to be sent on a CONNECT message
 * For example, can be used for supplying authorization information
  */
-type connectDataHandler func() any
+type ConnectDataHandler func() any
 
 /*
 *
@@ -40,7 +40,7 @@ type methods struct {
 
 	onConnection              systemHandler
 	onDisconnection           systemHandler
-	connectMessageDataHandler connectDataHandler
+	connectMessageDataHandler ConnectDataHandler
 }
 
 func (m *methods) On(method string, f interface{}) error {
@@ -53,7 +53,7 @@ func (m *methods) On(method string, f interface{}) error {
 	return nil
 }
 
-func (m *methods) SetConnectDataHandler(handler connectDataHandler) {
+func (m *methods) SetConnectDataHandler(handler ConnectDataHandler) {
 	m.connectMessageDataHandler = handler
 }
 

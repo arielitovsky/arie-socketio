@@ -190,7 +190,7 @@ func inLoop(c *Channel, m *methods) error {
 					}
 					// in protocol v4 & text msg Connection to a namespace
 				} else {
-					c.out <- protocol.OpenMsg + getConnectData(m)
+					c.out <- protocol.CommonMsg + protocol.OpenMsg + getConnectData(m)
 				}
 			}
 		case protocol.CloseMsg:

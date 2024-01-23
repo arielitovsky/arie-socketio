@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Baiguoshuai1/ariesocketio/protocol"
+	"github.com/arielitovsky/ariesocketio/protocol"
 )
 
 var (

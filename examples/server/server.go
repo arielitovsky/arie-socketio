@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Baiguoshuai1/ariesocketio"
-	"github.com/Baiguoshuai1/ariesocketio/websocket"
+	"github.com/arielitovsky/ariesocketio"
+	"github.com/arielitovsky/ariesocketio/websocket"
 )
 
 type Message struct {

@@ -1,4 +1,4 @@
-module github.com/Baiguoshuai1/ariesocketio
+module github.com/arielitovsky/ariesocketio
 
 go 1.20
 

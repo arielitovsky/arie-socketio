@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/Baiguoshuai1/ariesocketio/protocol"
-	"github.com/Baiguoshuai1/ariesocketio/utils"
+	"github.com/arielitovsky/ariesocketio/protocol"
+	"github.com/arielitovsky/ariesocketio/utils"
 	"github.com/buger/jsonparser"
 )
 

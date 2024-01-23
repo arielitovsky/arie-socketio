@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Baiguoshuai1/ariesocketio/protocol"
-	"github.com/Baiguoshuai1/ariesocketio/utils"
+	"github.com/arielitovsky/ariesocketio/protocol"
+	"github.com/arielitovsky/ariesocketio/utils"
 	"github.com/gorilla/websocket"
 	"github.com/ugorji/go/codec"
 )

@@ -4,8 +4,8 @@ import (
 	"net"
 	"strconv"
 
-	"github.com/Baiguoshuai1/ariesocketio/protocol"
-	"github.com/Baiguoshuai1/ariesocketio/websocket"
+	"github.com/arielitovsky/ariesocketio/protocol"
+	"github.com/arielitovsky/ariesocketio/websocket"
 )
 
 const (

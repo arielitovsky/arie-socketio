@@ -7,7 +7,7 @@ Examples directory contains simple client and server.
 ### Get It
 
 ```sh
-go get -u github.com/Baiguoshuai1/ariesocketio
+go get -u github.com/arielitovsky/ariesocketio
 ```
 
 ### Debug
@@ -22,8 +22,8 @@ DEBUG=1 go run server.go
 package main
 
 import (
-	"github.com/Baiguoshuai1/ariesocketio"
-	"github.com/Baiguoshuai1/ariesocketio/websocket"
+	"github.com/arielitovsky/ariesocketio"
+	"github.com/arielitovsky/ariesocketio/websocket"
 	"log"
 	"net/http"
 	"time"
@@ -90,8 +90,8 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/Baiguoshuai1/ariesocketio"
-	"github.com/Baiguoshuai1/ariesocketio/websocket"
+	"github.com/arielitovsky/ariesocketio"
+	"github.com/arielitovsky/ariesocketio/websocket"
 	"log"
 	"time"
 )

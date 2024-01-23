@@ -4,7 +4,7 @@ import (
 	"errors"
 	"reflect"
 
-	"github.com/Baiguoshuai1/ariesocketio/utils"
+	"github.com/arielitovsky/ariesocketio/utils"
 )
 
 type caller struct {
